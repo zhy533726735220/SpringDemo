@@ -1,0 +1,14 @@
+#忽略.idea文件夹
+/.idea/
+
+#忽略target文件夹
+/target
+
+/SpringDemo.iml
+
+#忽略所有class文件
+*.class
+
+
+
+
