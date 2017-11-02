@@ -12,15 +12,34 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
+	<aop:aspectj-autoproxy/>
 	<context:annotation-config/>
 	<context:component-scan base-package="com.zhy.service.impl, com.zhy.dao.impl"/>
 
-	<bean id="msg" class="com.zhy.service.impl.MessageServiceImpl"/>
-	<bean id="emp" class="com.zhy.vo.Emp">
-		<property name="empno" value="73690"/>
-		<property name="ename" value="zhy"/>
-		<!--<property name="dept" ref="d"/>-->
-	</bean>
+	<bean id="serviceProxy" class="com.zhy.service.proxy.ServiceProxy"/>
+	<bean id="messageServiceImpl" class="com.zhy.service.impl.MessageServiceImpl"/>
+	<!--<aop:config>-->
+		<!--&lt;!&ndash;*描述的是该方法的返回值，如果为*：表示的任意的数据类型&ndash;&gt;-->
+		<!--&lt;!&ndash;com.zhy.service..描述的是要切入点匹配的包名称&ndash;&gt;-->
+		<!--&lt;!&ndash;*.*描述的是类中所有的方法，格式"类.方法"&ndash;&gt;-->
+		<!--&lt;!&ndash;(..)描述的是参数&ndash;&gt;-->
+		<!--<aop:pointcut id="defaultPointCut" expression="execution(* com.zhy.service..*.*(..))"/>-->
+		<!--&lt;!&ndash;定义好切入点之后实际上就表示已经可以将具体的方法操作定位到某些业务层的方法上了，那么随后还需要对其进行方法的调用配置&ndash;&gt;-->
+		<!--<aop:aspect ref="serviceProxy">-->
+			<!--<aop:before method="beforeInvoke" pointcut-ref="defaultPointCut"/>-->
+			<!--<aop:after method="afterInvoke" pointcut-ref="defaultPointCut"/>-->
+			<!--<aop:after-returning method="returnInvoke" pointcut="execution(* com.zhy.service..*.*(..))" returning="val" arg-names="val"/>-->
+			<!--<aop:after-throwing method="throwInvoke"  pointcut="execution(* com.zhy.service..*.*(..))" throwing="e" arg-names="e"/>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
+
+
+	<!--<bean id="msg" class="com.zhy.service.impl.MessageServiceImpl"/>-->
+	<!--<bean id="emp" class="com.zhy.vo.Emp">-->
+		<!--<property name="empno" value="73690"/>-->
+		<!--<property name="ename" value="zhy"/>-->
+		<!--&lt;!&ndash;<property name="dept" ref="d"/>&ndash;&gt;-->
+	<!--</bean>-->
 	<!--第一种配置List集合-->
 	<!--<bean id="dept" class="com.zhy.vo.Dept">-->
 		<!--<property name="deptno" value="10"/>-->
