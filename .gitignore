@@ -1,10 +1,17 @@
-#忽略.idea文件夹
+#忽略文件夹
 /.idea/
 
-#忽略target文件夹
 /target
 
+/logs
+
+/src/main/test/
+
+
 /SpringDemo.iml
+
+/src/main/resources/log4j.properties
+
 
 #忽略所有class文件
 *.class
