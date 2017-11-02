@@ -15,9 +15,41 @@
 	<aop:aspectj-autoproxy/>
 	<context:annotation-config/>
 	<context:component-scan base-package="com.zhy.service.impl, com.zhy.dao.impl"/>
+	<!--在applicationContext.xml文件之中引入其他的配置文件项-->
+	<context:property-placeholder location="classpath:database.properties"/>
 
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
 	<bean id="serviceProxy" class="com.zhy.service.proxy.ServiceProxy"/>
 	<bean id="messageServiceImpl" class="com.zhy.service.impl.MessageServiceImpl"/>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${db.jdbcUrl}"/>
+		<property name="driverClass" value="${db.driverClass}"/>
+		<property name="user" value="${db.user}"/>
+		<property name="password" value="${db.password}"/>
+		<!--配置项目之中最大的数据库可用连接数-->
+		<property name="maxPoolSize" value="${db.maxPoolSize}"/>
+		<!--当数据库连接已满时，其他线程最大等待时间-->
+		<property name="maxIdleTime" value="${db.maxIdleTime}"/>
+		<!--最小的数据库连接可用数，即：如果没有人连接，保持的连接数量-->
+		<property name="minPoolSize" value="${db.minPoolSize}"/>
+		<!--项目刚刚运行之后的连接数量-->
+		<property name="initialPoolSize" value="${db.initialPoolSize}"/>
+	</bean>
+	<!--简单的数据库连接-->
+	<!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+		<!--<property name="url" value="jdbc:mysql://localhost:3306/test"/>-->
+		<!--<property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>-->
+		<!--<property name="username" value="root"/>-->
+		<!--<property name="password" value=""/>-->
+	<!--</bean>-->
+
+
 	<!--<aop:config>-->
 		<!--&lt;!&ndash;*描述的是该方法的返回值，如果为*：表示的任意的数据类型&ndash;&gt;-->
 		<!--&lt;!&ndash;com.zhy.service..描述的是要切入点匹配的包名称&ndash;&gt;-->
@@ -93,12 +125,8 @@
 		<!--</property>-->
 	<!--</bean>-->
 
-
-
 	<!--p命名空间-->
 	<!--<bean id="dept" class="com.zhy.vo.Dept" p:deptno="10" p:dname="开发部" p:loc="北京"></bean>-->
-
-
 
 
 </beans>
