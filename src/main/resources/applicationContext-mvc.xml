@@ -11,6 +11,22 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<!--表示要进行安全访问的路径资源匹配处理-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--匹配前缀-->
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<!--匹配后缀-->
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<array>
+				<value>message</value>
+				<value>pages</value>
+				<value>validations</value>
+			</array>
+		</property>
+	</bean>
 	<context:annotation-config/>
 	<context:component-scan base-package="com.zhy.action"/>
 	<mvc:annotation-driven/>			<!-- 启动Spring MVC的注解配置 -->

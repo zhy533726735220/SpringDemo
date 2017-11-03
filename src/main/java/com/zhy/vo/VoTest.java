@@ -1,12 +1,14 @@
 package com.zhy.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class Emp implements Serializable{
+@SuppressWarnings("serial")
+public class VoTest implements Serializable{
     private Integer empno;
     private String ename;
     private Double sal;
-    private Dept dept;
+    private Date hiredate;
 
     public Integer getEmpno() {
         return empno;
@@ -32,21 +34,21 @@ public class Emp implements Serializable{
         this.sal = sal;
     }
 
-    public Dept getDept() {
-        return dept;
+    public Date getHiredate() {
+        return hiredate;
     }
 
-    public void setDept(Dept dept) {
-        this.dept = dept;
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
     }
 
     @Override
     public String toString() {
-        return "Emp{" +
+        return "VoTest{" +
                 "empno=" + empno +
                 ", ename='" + ename + '\'' +
                 ", sal=" + sal +
-                ", dept=" + dept +
+                ", hiredate=" + hiredate +
                 '}';
     }
 }
