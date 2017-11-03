@@ -1,4 +1,4 @@
-#忽略文件夹
+
 /.idea/
 
 /target
@@ -13,7 +13,6 @@
 /src/main/resources/log4j.properties
 
 
-#忽略所有class文件
 *.class
 
 
