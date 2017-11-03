@@ -19,12 +19,10 @@
 	<!--在applicationContext.xml文件之中引入其他的配置文件项-->
 	<context:property-placeholder location="classpath:database.properties"/>
 
-
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	
-	
+
 	<bean id="serviceProxy" class="com.zhy.service.proxy.ServiceProxy"/>
 	<bean id="messageServiceImpl" class="com.zhy.service.impl.MessageServiceImpl"/>
 
@@ -42,6 +40,7 @@
 		<!--项目刚刚运行之后的连接数量-->
 		<property name="initialPoolSize" value="${db.initialPoolSize}"/>
 	</bean>
+
 	<!--简单的数据库连接-->
 	<!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
 		<!--<property name="url" value="jdbc:mysql://localhost:3306/test"/>-->
@@ -49,7 +48,6 @@
 		<!--<property name="username" value="root"/>-->
 		<!--<property name="password" value=""/>-->
 	<!--</bean>-->
-
 
 	<!--<aop:config>-->
 		<!--&lt;!&ndash;*描述的是该方法的返回值，如果为*：表示的任意的数据类型&ndash;&gt;-->
@@ -65,7 +63,6 @@
 			<!--<aop:after-throwing method="throwInvoke"  pointcut="execution(* com.zhy.service..*.*(..))" throwing="e" arg-names="e"/>-->
 		<!--</aop:aspect>-->
 	<!--</aop:config>-->
-
 
 	<!--<bean id="msg" class="com.zhy.service.impl.MessageServiceImpl"/>-->
 	<!--<bean id="emp" class="com.zhy.vo.Emp">-->
@@ -128,6 +125,5 @@
 
 	<!--p命名空间-->
 	<!--<bean id="dept" class="com.zhy.vo.Dept" p:deptno="10" p:dname="开发部" p:loc="北京"></bean>-->
-
 
 </beans>

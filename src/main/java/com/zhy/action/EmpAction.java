@@ -9,8 +9,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,8 +50,15 @@ public class EmpAction extends AbstractAction{
 
     // 此时vo作为一个参数，并且没有实例化
     @RequestMapping("add")
-    public ModelAndView add(VoTest vo) {
+//     表单文件选择框的参数名称必须是photo
+    public ModelAndView add(VoTest vo, MultipartFile photo, HttpServletRequest request) {
         System.out.println(vo);
+        System.out.println("文件原始名称:" + photo.getOriginalFilename());
+        System.out.println("文件是否上传:" + photo.isEmpty());
+        System.out.println("文件大小:" + photo.getSize());
+        System.out.println("文件类型:" + photo.getContentType());
+        String fileName = super.createFileName(photo);
+        System.out.println("上传结果:" + super.saveFile(photo, fileName, request));
         return null;
     }
 
@@ -60,5 +69,9 @@ public class EmpAction extends AbstractAction{
         System.out.println(super.getValue("emp.add.rules"));
         System.out.println();
         return null;
+    }
+
+    public String getFileUploadDir() {
+        return "/upload/emp/";
     }
 }
