@@ -53,21 +53,23 @@ public class EmpAction extends AbstractAction{
 //     表单文件选择框的参数名称必须是photo
     public ModelAndView add(VoTest vo, MultipartFile photo, HttpServletRequest request) {
         System.out.println(vo);
-        System.out.println("文件原始名称:" + photo.getOriginalFilename());
-        System.out.println("文件是否上传:" + photo.isEmpty());
-        System.out.println("文件大小:" + photo.getSize());
-        System.out.println("文件类型:" + photo.getContentType());
-        String fileName = super.createFileName(photo);
-        System.out.println("上传结果:" + super.saveFile(photo, fileName, request));
+        if (photo != null) {
+            System.out.println("文件原始名称:" + photo.getOriginalFilename());
+            System.out.println("文件是否上传:" + photo.isEmpty());
+            System.out.println("文件大小:" + photo.getSize());
+            System.out.println("文件类型:" + photo.getContentType());
+            String fileName = super.createFileName(photo);
+            System.out.println("上传结果:" + super.saveFile(photo, fileName, request));
+        }
         return null;
     }
 
     @RequestMapping("info")
     public ModelAndView info() {
-        System.out.println(super.getValue("vo.edit.msg", "haha"));
-        System.out.println(super.getValue("emp.add.page"));
-        System.out.println(super.getValue("emp.add.rules"));
-        System.out.println();
+//        System.out.println(super.getValue("vo.edit.msg", "haha"));
+//        System.out.println(super.getValue("emp.add.page"));
+//        System.out.println(super.getValue("emp.add.rules"));
+//        System.out.println();
         return null;
     }
 

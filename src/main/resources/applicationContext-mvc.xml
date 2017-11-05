@@ -12,6 +12,10 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
+
+
+
+
 	<!--定义文件的上传配置支持-->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!--设置每次上传文件的最大限制-->
@@ -51,4 +55,14 @@
 	<context:component-scan base-package="com.zhy.action"/>
 	<mvc:annotation-driven/>			<!-- 启动Spring MVC的注解配置 -->
 	<mvc:default-servlet-handler/>		<!-- 启用处理请求的servlet -->
+	<!--拦截器配置-->
+	<!--定义拦截器栈，可以定义有多个拦截器-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!--该拦截器针对于所有路径下的action-->
+			<mvc:mapping path="/pages/**/*.action"/>
+			<!--定义该拦截器处理程序类，必须是HandlerInterceptor子类-->
+			<bean class="com.zhy.util.validate.ValidationInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans> 
