@@ -29,7 +29,8 @@
 	<!-- SpringMVC中所有路径的请求映射，使用的是“*.action” -->
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.action</url-pattern>
+		<!--<url-pattern>*.action</url-pattern> -->
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- Spring中提供的编码过滤器，使用的编码都是UTF-8 -->
 	<filter>
