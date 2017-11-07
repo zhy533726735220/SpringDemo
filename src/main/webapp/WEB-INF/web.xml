@@ -32,6 +32,25 @@
 		<!--<url-pattern>*.action</url-pattern> -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<!--需要定义一个专门提供有Restful风格的WebService的Servlet处理类-->
+	<servlet>
+		<servlet-name>restService</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.container.servlet.ServletContainer
+		</servlet-class>
+		<!--定义的是自动配置的扫描包，也就是说你的程序应该放在""包中-->
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.zhy.resources</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>restService</servlet-name>
+		<!--所有的WebService的服务器路径必须在"/rest/"目录下-->
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- Spring中提供的编码过滤器，使用的编码都是UTF-8 -->
 	<filter>
 		<filter-name>encoding</filter-name>
